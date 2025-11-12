@@ -2,6 +2,10 @@
 
 import { useEffect, createContext, useContext, useRef, ReactNode } from "react";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface LenisContextType {
   getLenis: () => Lenis | null;
@@ -31,16 +35,70 @@ export function LenisProvider({ children }: { children: ReactNode }) {
 
     lenisRef.current = lenisInstance;
 
-    function raf(time: number) {
-      lenisInstance.raf(time);
-      requestAnimationFrame(raf);
-    }
+    lenisInstance.on("scroll", ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    const tickerCallback = (time: number) => {
+      lenisInstance.raf(time * 2000);
+    };
+
+    gsap.ticker.add(tickerCallback);
+    gsap.ticker.lagSmoothing(0);
+
+    const setupSnapping = () => {
+      const sections = gsap.utils.toArray<HTMLElement>("section[id]");
+
+      if (sections.length === 0) return;
+
+      ScrollTrigger.create({
+        snap: {
+          snapTo: () => {
+            const viewportHeight = window.innerHeight;
+            const scrollY = window.scrollY;
+            const maxScroll =
+              document.documentElement.scrollHeight - viewportHeight;
+
+            let mostVisibleSection = sections[0];
+            let maxVisibleArea = 0;
+
+            sections.forEach((section) => {
+              const rect = section.getBoundingClientRect();
+
+              const visibleTop = Math.max(0, rect.top);
+              const visibleBottom = Math.min(viewportHeight, rect.bottom);
+              const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+              if (visibleHeight > maxVisibleArea) {
+                maxVisibleArea = visibleHeight;
+                mostVisibleSection = section;
+              }
+            });
+
+            const sectionRect = mostVisibleSection.getBoundingClientRect();
+            const sectionTop = scrollY + sectionRect.top;
+            const sectionHeight = sectionRect.height;
+
+            const targetScroll =
+              sectionTop + sectionHeight / 2 - viewportHeight / 2;
+
+            const clampedScroll = Math.max(
+              0,
+              Math.min(maxScroll, targetScroll)
+            );
+            return clampedScroll / maxScroll;
+          },
+          duration: { min: 0.2, max: 0.4 },
+          ease: "power1.inOut",
+          delay: 0.05,
+        },
+      });
+    };
+
+    setTimeout(setupSnapping, 200);
 
     return () => {
       lenisInstance.destroy();
-      lenisRef.current = null;
+      gsap.ticker.remove(tickerCallback);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 

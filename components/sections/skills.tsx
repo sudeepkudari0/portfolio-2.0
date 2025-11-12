@@ -19,7 +19,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen flex items-center justify-center"
+      className="min-h-screen flex items-center justify-center py-20"
     >
       <div className="max-w-5xl px-8">
         <h2 className="text-5xl md:text-7xl font-bold mb-12">Skills & Tools</h2>

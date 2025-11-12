@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center text-black "
+      className="min-h-screen flex items-center justify-center text-black  bg-[linear-gradient(180deg,#FFEFEA_0%,#FFF5F0_50%,#FFFFFF_100%)] "
     >
       <div className="max-w-4xl px-8 text-center">
         {/* Availability badge */}
@@ -21,14 +21,11 @@ export default function Hero() {
 
         {/* Main headline with mixed typography */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-tight">
-          <span className="">A </span>
           <span className="italic font-serif text-zinc-800">
-            software developer
+            A software developer
           </span>
           <br />
           <span className="">building real, reliable apps</span>
-          <br />
-          <span className=""></span>
         </h1>
 
         {/* Subtitle */}
