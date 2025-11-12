@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center text-black  bg-[linear-gradient(180deg,#FFEFEA_0%,#FFF5F0_50%,#FFFFFF_100%)] "
+      className="min-h-screen flex items-center justify-center text-black"
     >
       <div className="max-w-4xl px-8 text-center">
         {/* Availability badge */}
