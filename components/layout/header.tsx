@@ -33,7 +33,7 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+    <header className="fixed top-8 left-[75%] -translate-x-1/2 z-50">
       <nav className="bg-white/80 dark:bg-black/80 backdrop-blur-md rounded-full border border-border shadow-lg px-6 py-3">
         <ul className="flex items-center gap-8">
           {navItems.map((item) => (
