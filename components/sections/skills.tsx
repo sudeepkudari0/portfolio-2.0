@@ -68,7 +68,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen flex items-center justify-center bg-background overflow-hidden py-20"
+      className="min-h-screen flex items-center justify-center overflow-hidden py-20"
     >
       <div className="max-w-6xl w-full px-6 md:px-12">
         {/* Header */}

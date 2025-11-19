@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Contact() {
   return (
     <section
@@ -13,31 +15,25 @@ export default function Contact() {
           amazing.
         </p>
         <div className="space-y-4">
-          <a
-            href="mailto:your.email@example.com"
+          <Link
+            href="mailto:sudeepkudari0@gmail.com"
             className="block text-2xl md:text-3xl font-medium hover:text-primary transition-colors"
           >
-            your.email@example.com
-          </a>
+            sudeepkudari0@gmail.com
+          </Link>
           <div className="flex gap-6 justify-center pt-8">
-            <a
-              href="#"
+            <Link
+              href="https://github.com/sudeepkudari0"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               GitHub
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="https://linkedin.com/in/sudeep-kudari"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
               LinkedIn
-            </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Twitter
-            </a>
+            </Link>
           </div>
         </div>
       </div>
