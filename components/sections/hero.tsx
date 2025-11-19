@@ -14,6 +14,15 @@ export default function Hero() {
 
     if (!hero || !content) return;
 
+    // Set initial state immediately to prevent zoom effect
+    gsap.set(content, {
+      rotateX: 0,
+      rotateY: 0,
+      x: 0,
+      y: 0,
+      transformPerspective: 1000,
+    });
+
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { left, top, width, height } = hero.getBoundingClientRect();
@@ -78,7 +87,7 @@ export default function Hero() {
           willChange: "transform",
         }}
       >
-        {}
+        {/* Badge */}
         <div
           className="mb-6 text-sm md:text-base text-green-500 font-medium"
           style={{ transform: "translateZ(40px)" }}
@@ -86,7 +95,7 @@ export default function Hero() {
           Available for work
         </div>
 
-        {}
+        {/* Main Heading */}
         <h1
           className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight leading-tight"
           style={{ transform: "translateZ(60px)" }}
@@ -98,7 +107,7 @@ export default function Hero() {
           <span className="">building real, reliable apps</span>
         </h1>
 
-        {}
+        {/* Description */}
         <p
           className="text-base md:text-lg lg:text-xl text-zinc-700 mb-10 max-w-3xl mx-auto leading-relaxed"
           style={{ transform: "translateZ(40px)" }}
@@ -107,7 +116,7 @@ export default function Hero() {
           logic to clean, usable interfaces.
         </p>
 
-        {}
+        {/* CTA Buttons */}
         <div
           className="flex gap-4 flex-wrap justify-center"
           style={{ transform: "translateZ(80px)" }}
