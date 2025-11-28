@@ -123,14 +123,14 @@ export default function Hero() {
         >
           <button
             onClick={() => scrollToSection("work")}
-            className="group flex items-center gap-2 px-8 py-4 bg-zinc-800 text-white rounded-full font-medium hover:bg-zinc-700 transition-all shadow-lg hover:shadow-xl"
+            className="group flex items-center gap-2 px-6 md:px-8 py-2 md:py-4 bg-zinc-800 text-white rounded-full font-medium hover:bg-zinc-700 transition-all shadow-lg hover:shadow-xl"
           >
             View My Work
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
           <button
             onClick={() => scrollToSection("about")}
-            className="px-8 py-4 border-2 border-zinc-400 text-zinc-800 rounded-full font-medium hover:border-zinc-800 hover:bg-zinc-800/10 transition-all"
+            className="px-6 md:px-8 py-2 md:py-4 border-2 border-zinc-400 text-zinc-800 rounded-full font-medium hover:border-zinc-800 hover:bg-zinc-800/10 transition-all"
           >
             About Me
           </button>
