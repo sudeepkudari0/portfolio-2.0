@@ -126,7 +126,9 @@ export default function About() {
           {/* CTA - Resume Link */}
           <div className="pt-4">
             <a
-              href="#resume"
+              href="https://drive.google.com/file/d/18TyblIv22gXj4jbxcdOshgFu3oxVyMlk/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-neutral-900 hover:gap-3 transition-all duration-300 group"
             >
               <span className="text-lg font-medium">View full resume</span>

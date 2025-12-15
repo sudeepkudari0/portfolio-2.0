@@ -106,7 +106,12 @@ export default function ProfessionalWork() {
   ];
 
   useEffect(() => {
-    if (!sectionRef.current || !containerRef.current || !cardsWrapperRef.current) return;
+    if (
+      !sectionRef.current ||
+      !containerRef.current ||
+      !cardsWrapperRef.current
+    )
+      return;
 
     const section = sectionRef.current;
     const cardsWrapper = cardsWrapperRef.current;
@@ -153,10 +158,20 @@ export default function ProfessionalWork() {
 
         // Scale cards based on center proximity
         cards.forEach((card, index) => {
-          const distanceFromCenter = Math.abs(index - progress * (totalProjects - 1));
-          const scale = gsap.utils.interpolate(1, 0.85, Math.min(distanceFromCenter, 1));
-          const opacity = gsap.utils.interpolate(1, 0.5, Math.min(distanceFromCenter, 1));
-          
+          const distanceFromCenter = Math.abs(
+            index - progress * (totalProjects - 1)
+          );
+          const scale = gsap.utils.interpolate(
+            1,
+            0.85,
+            Math.min(distanceFromCenter, 1)
+          );
+          const opacity = gsap.utils.interpolate(
+            1,
+            0.5,
+            Math.min(distanceFromCenter, 1)
+          );
+
           gsap.to(card, {
             scale: scale,
             opacity: opacity,
@@ -188,7 +203,7 @@ export default function ProfessionalWork() {
 
     return () => {
       scrollTrigger.kill();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, [projects.length]);
 
@@ -198,24 +213,25 @@ export default function ProfessionalWork() {
       id="professional-work"
       className="relative min-h-screen overflow-hidden"
     >
-      {/* Section Header */}
-      <div className="prof-section-header absolute top-8 left-0 right-0 z-30 px-6 md:px-12 pointer-events-none">
+      {/* Section Header - Compact on mobile */}
+      <div className="prof-section-header absolute top-24 md:top-10 left-0 right-0 z-40 px-4 md:px-12 pointer-events-none">
         <div className="max-w-6xl mx-auto">
-          <div className="inline-block px-3 py-1.5 bg-slate-100 border border-slate-300 rounded-full text-xs md:text-sm font-semibold text-slate-700 mb-3">
-            💼 Professional Work
+          <div className="inline-block px-2 py-1 md:px-3 md:py-1.5 bg-slate-100 border border-slate-300 rounded-full text-[10px] md:text-sm font-semibold text-slate-700 mb-1 md:mb-3">
+            💼 Professional
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-2">
+          <h2 className="text-xl md:text-4xl lg:text-5xl font-bold text-black mb-0.5 md:mb-2">
             Client Projects
           </h2>
-          <p className="text-base md:text-lg text-slate-600 max-w-2xl">
-            Building scalable healthcare and business platforms for industry clients
+          <p className="text-xs md:text-lg text-slate-600 max-w-3xl hidden sm:block">
+            Building scalable healthcare and business platforms for industry
+            clients
           </p>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-center">
-        <div className="flex items-center gap-2 text-sm text-slate-500 mb-2">
+      {/* Scroll Indicator - Hide on very small screens */}
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-30 text-center">
+        <div className="hidden sm:flex items-center gap-2 text-sm text-slate-500 mb-2">
           <span>Scroll to explore</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -232,14 +248,14 @@ export default function ProfessionalWork() {
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>
-        <div className="flex gap-2 justify-center">
+        <div className="flex gap-1.5 md:gap-2 justify-center">
           {projects.map((_, index) => (
             <div
               key={index}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
+              className={`h-1 md:h-1.5 rounded-full transition-all duration-300 ${
                 index === currentIndex
-                  ? "w-8 bg-blue-600"
-                  : "w-1.5 bg-slate-300"
+                  ? "w-6 md:w-8 bg-blue-600"
+                  : "w-1 md:w-1.5 bg-slate-300"
               }`}
             />
           ))}
@@ -249,7 +265,7 @@ export default function ProfessionalWork() {
       {/* Cards Container */}
       <div
         ref={containerRef}
-        className="absolute inset-0 flex items-center justify-start overflow-hidden pt-32"
+        className="absolute inset-0 flex items-center justify-start overflow-hidden pt-28 pb-12 md:pt-32 md:pb-20"
       >
         <div
           ref={cardsWrapperRef}
@@ -261,7 +277,7 @@ export default function ProfessionalWork() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="prof-project-card px-3"
+              className="prof-project-card px-2 md:px-3"
               style={{
                 width: "500px",
                 maxWidth: "90vw",
@@ -273,9 +289,9 @@ export default function ProfessionalWork() {
                 rel="noopener noreferrer"
                 className="block group"
               >
-                <div className="bg-white rounded-2xl border-2 border-slate-200 overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-blue-300">
-                  {/* Image Container */}
-                  <div className="relative h-48 bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
+                <div className="bg-white rounded-xl md:rounded-2xl border-2 border-slate-200 overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl hover:border-blue-300">
+                  {/* Image Container - Smaller on mobile */}
+                  <div className="relative h-32 md:h-48 bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden">
                     <div className="absolute inset-0 bg-slate-800 flex items-center justify-center">
                       <img
                         src={project.src}
@@ -289,36 +305,36 @@ export default function ProfessionalWork() {
                         {project.title}
                       </span>
                     </div>
-                    
+
                     {/* Category Badge */}
-                    <div className="absolute top-4 right-4 px-3 py-1.5 bg-black/80 backdrop-blur-sm rounded-full text-xs font-semibold text-white border border-white/20">
+                    <div className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-1 md:px-3 md:py-1.5 bg-black/80 backdrop-blur-sm rounded-full text-[10px] md:text-xs font-semibold text-white border border-white/20">
                       {project.category}
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-2xl md:text-3xl font-bold text-black mb-2 group-hover:text-blue-600 transition-colors">
+                  {/* Content - Compact on mobile */}
+                  <div className="p-3 md:p-6">
+                    <h3 className="text-lg md:text-2xl lg:text-3xl font-bold text-black mb-1 md:mb-2 group-hover:text-blue-600 transition-colors">
                       {project.title}
                     </h3>
-                    
-                    <p className="text-sm text-slate-500 italic mb-3">
+
+                    <p className="text-xs md:text-sm text-slate-500 italic mb-2 md:mb-3 line-clamp-1 md:line-clamp-none">
                       {project.tagline}
                     </p>
 
-                    <p className="text-sm text-slate-700 leading-relaxed mb-4">
+                    <p className="text-xs md:text-sm text-slate-700 leading-relaxed mb-2 md:mb-4 line-clamp-2 md:line-clamp-none">
                       {project.description}
                     </p>
 
-                    {/* Stats */}
+                    {/* Stats - More compact on mobile */}
                     {project.stats && (
-                      <div className="grid grid-cols-2 gap-3 mb-4 pb-4 border-b border-slate-200">
+                      <div className="grid grid-cols-2 gap-2 md:gap-3 mb-2 md:mb-4 pb-2 md:pb-4 border-b border-slate-200">
                         {project.stats.map((stat, i) => (
                           <div key={i} className="text-center">
-                            <div className="text-xl font-bold text-black">
+                            <div className="text-sm md:text-xl font-bold text-black">
                               {stat.value}
                             </div>
-                            <div className="text-xs text-slate-500">
+                            <div className="text-[10px] md:text-xs text-slate-500">
                               {stat.label}
                             </div>
                           </div>
@@ -326,12 +342,12 @@ export default function ProfessionalWork() {
                       </div>
                     )}
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, i) => (
+                    {/* Tags - Limit visible tags on mobile */}
+                    <div className="flex flex-wrap gap-1.5 md:gap-2 mb-2 md:mb-4">
+                      {project.tags.slice(0, 4).map((tag, i) => (
                         <span
                           key={i}
-                          className="px-2.5 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-medium text-slate-700"
+                          className="px-2 py-0.5 md:px-2.5 md:py-1 bg-slate-100 border border-slate-200 rounded-lg text-[10px] md:text-xs font-medium text-slate-700"
                         >
                           {tag}
                         </span>
@@ -339,19 +355,19 @@ export default function ProfessionalWork() {
                     </div>
 
                     {/* CTA */}
-                    <div className="flex items-center gap-2 text-sm font-semibold text-black group-hover:text-blue-600 transition-colors">
+                    <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm font-semibold text-black group-hover:text-blue-600 transition-colors">
                       <span>View Project</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
+                        width="14"
+                        height="14"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="transition-transform group-hover:translate-x-1"
+                        className="md:w-[18px] md:h-[18px] transition-transform group-hover:translate-x-1"
                       >
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
